@@ -1,4 +1,4 @@
-module github.com/possible88/go_admin
+module go_admin
 
 go 1.17
 
