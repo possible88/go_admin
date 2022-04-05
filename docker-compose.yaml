@@ -1,0 +1,36 @@
+version: "3.9"
+services:
+  backend:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      - redis
+
+
+  db:
+   image: mysql:8.0.27
+   restart: always
+   environment:
+     MYSQL_DATABASE: go_admin
+     MYSQL_USER: jobertrade
+     MYSQL_PASSWORD: 5sntVLe69LSkrMK
+     MYSQL_ROOT_PASSWORD: 5sntVLe69LSkrMK
+   volumes:
+     - .dbdata:/var/lib/mysql
+   ports:
+     - 33067:3306
+
+   security_opt:
+    - seccomp:unconfined
+
+  
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
+
+    
